@@ -1,0 +1,960 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GF</name>
+    </assembly>
+    <members>
+        <member name="T:GF.Collections.ConcurrentQueue`1">
+            <summary>
+            安全队列的简单实现
+            ref: WebSocket4Net.dll, Version=0.8.0.0
+            doc: https://msdn.microsoft.com/zh-cn/library/dd267265
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:GF.Collections.ConcurrentQueue`1.Enqueue(`0)">
+            <summary>
+            将对象添加到队列的结尾处。
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:GF.Collections.ConcurrentQueue`1.TryDequeue(`0@)">
+            <summary>
+            尝试移除并返回位于并发队列开头处的对象。
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GF.Collections.ObservableDictionary`2">
+            <summary>
+            提供受限的增删接口，并提供增删通知事件的字典容器
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="T:GF.Collections.Tuple">
+            <summary>
+            元组容器
+            </summary>
+        </member>
+        <member name="T:GF.Singleton`1">
+            <summary>
+            普通单例
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:GF.SingletonMonoBehaviour`1">
+            <summary>
+            直接挂在UI上的MonoBehaviour单例
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:GF.UnitySingleton`1">
+            <summary>
+            通过代码实例化创建出来的MonoBehaviour的单利
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:GF.Debug.Debugger">
+            <summary>
+            系统日志模块
+            </summary>
+        </member>
+        <member name="F:GF.Debug.Debugger.EnableLog">
+            <summary>
+            是否启动日志
+            </summary>
+        </member>
+        <member name="F:GF.Debug.Debugger.EnableTime">
+            <summary>
+            是否显示Log时间
+            </summary>
+        </member>
+        <member name="F:GF.Debug.Debugger.EnableSave">
+            <summary>
+            是否将日志保存到本地
+            </summary>
+        </member>
+        <member name="F:GF.Debug.Debugger.EnableStack">
+            <summary>
+            是否允许堆栈
+            </summary>
+        </member>
+        <member name="F:GF.Debug.Debugger.Prefix">
+            <summary>
+            开头标记，用于对Unity默认log做区分
+            </summary>
+        </member>
+        <member name="M:GF.Debug.Debugger.LogToFile(System.String,System.Boolean)">
+            <summary>
+            将日志写入到文件中
+            </summary>
+            <param name="message"></param>
+            <param name="EnableStack"></param>
+        </member>
+        <member name="T:GF.DataSave">
+            <summary>
+            数据存储
+            </summary>
+        </member>
+        <member name="M:GF.DataSave.Save``1(System.String,``0)">
+            <summary>
+            保存数据
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+            <param name="fileName">数据存储Key</param>
+            <param name="data">数据源</param>
+        </member>
+        <member name="M:GF.DataSave.Exit(System.String)">
+            <summary>
+            检查数据是否存在
+            </summary>
+            <param name="dataName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.DataSave.Delete(System.String)">
+            <summary>
+            删除某个数据
+            </summary>
+            <param name="dataName">数据名</param>
+        </member>
+        <member name="M:GF.DataSave.DeleteAllData">
+            <summary>
+            删除所有数据
+            </summary>
+        </member>
+        <member name="T:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle">
+            <summary>
+            这个类设计为单独控制Sequence的停止，如果你想手动停止的话
+            也可以缓存Sequence，使用Sequence停止时，需要判断是否正在使用当前ID
+            目前设计为一对一控制，重复SetHandle的话，会丢失对上一个Sequence的控制权
+            考虑到如果设计为一对多的话，内部需要保存一个数组，会浪费内存，一对多的使用情况也很少，故不支持
+            </summary>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle.StopSequence">
+            <summary>
+            停止sequence
+            </summary>
+            <localize>
+            <zh-CN>停止当前控制的sequence</zh-CN>
+            <en>Stop the handling sequence</en>
+            </localize>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle.Sequence">
+            <summary>
+            用Handle开序列
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle.Delayer(System.Single,System.Action)">
+            <summary>
+            延迟调用函数
+            </summary>
+            <param name="delay">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle.Looper(System.Single,System.Action)">
+            <summary>
+            无限循环调用函数
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle.Looper(System.Single,System.Action{System.Int32})">
+            <summary>
+            无限循环调用函数，循环次数作为参数
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle.Looper(System.Single,System.Int32,System.Boolean,System.Action)">
+            <summary>
+            循环调用函数，并设置次数，是否立即开始
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle.Looper(System.Single,System.Int32,System.Boolean,System.Action{System.Int32})">
+            <summary>
+            循环调用函数，循环次数作为参数，并设置次数，是否立即开始
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle.SequenceUnscaled">
+            <summary>
+            用Handle开序列
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle.DelayerUnscaled(System.Single,System.Action)">
+            <summary>
+            延迟调用函数
+            </summary>
+            <param name="delay">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle.LooperUnscaled(System.Single,System.Action)">
+            <summary>
+            无限循环调用函数
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle.LooperUnscaled(System.Single,System.Action{System.Int32})">
+            <summary>
+            无限循环调用函数，循环次数作为参数
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle.LooperUnscaled(System.Single,System.Int32,System.Boolean,System.Action)">
+            <summary>
+            循环调用函数，并设置次数，是否立即开始
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle.LooperUnscaled(System.Single,System.Int32,System.Boolean,System.Action{System.Int32})">
+            <summary>
+            循环调用函数，循环次数作为参数，并设置次数，是否立即开始
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem">
+            <summary>
+            ActionSequenceSystem is a multifunctional chaining timer system
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.ListSequenceAlive">
+            <summary>
+            Used by the editor. Display relevant information.
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.ListSequenceUnscaleAlive">
+            <summary>
+            Used by the editor. Display relevant information.
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.countActiveSequence">
+            <summary>
+            Used by the editor. Display relevant information.
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.countAllSequence">
+            <summary>
+            Used by the editor. Display relevant information.
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.countActiveAction">
+            <summary>
+            Used by the editor. Display relevant information.
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.countAllAction">
+            <summary>
+            Used by the editor. Display relevant information.
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.countActiveInterval">
+            <summary>
+            Used by the editor. Display relevant information.
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.countAllInterval">
+            <summary>
+            Used by the editor. Display relevant information.
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.countActiveSetActive">
+            <summary>
+            Used by the editor. Display relevant information.
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.countAllSetActive">
+            <summary>
+            Used by the editor. Display relevant information.
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.countActiveWaitFor">
+            <summary>
+            Used by the editor. Display relevant information.
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.countAllWaitFor">
+            <summary>
+            Used by the editor. Display relevant information.
+            </summary>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.StopSequenceAll">
+            <summary>
+            停止所有Sequence
+            </summary>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.Sequence">
+            <summary>
+            无ID启动
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.Delayer(System.Single,System.Action)">
+            <summary>
+            延迟调用函数
+            </summary>
+            <param name="delay">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.Looper(System.Single,System.Action)">
+            <summary>
+            无限循环调用函数
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.Looper(System.Single,System.Action{System.Int32})">
+            <summary>
+            延迟调用函数，循环次数作为参数
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.Looper(System.Single,System.Int32,System.Boolean,System.Action)">
+            <summary>
+            循环调用函数，并设置次数，是否立即开始
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.Looper(System.Single,System.Int32,System.Boolean,System.Action{System.Int32})">
+            <summary>
+            循环调用函数，循环次数作为参数，并设置次数，是否立即开始
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.SequenceUnscaled">
+            <summary>
+            无ID启动
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.DelayerUnscaled(System.Single,System.Action)">
+            <summary>
+            延迟调用函数
+            </summary>
+            <param name="delay">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.LooperUnscaled(System.Single,System.Action)">
+            <summary>
+            无限循环调用函数
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.LooperUnscaled(System.Single,System.Action{System.Int32})">
+            <summary>
+            延迟调用函数，循环次数作为参数
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.LooperUnscaled(System.Single,System.Int32,System.Boolean,System.Action)">
+            <summary>
+            循环调用函数，并设置次数，是否立即开始
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem.LooperUnscaled(System.Single,System.Int32,System.Boolean,System.Action{System.Int32})">
+            <summary>
+            循环调用函数，循环次数作为参数，并设置次数，是否立即开始
+            </summary>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx">
+            <summary>
+            Methods that extend known Unity components and allow to directly create and control timer from their instances
+            </summary>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.Sequence(UnityEngine.Component)">
+            <summary>
+            用Component作为ID开序列
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.StopSequence(UnityEngine.Component)">
+            <summary>
+            用Component作为ID停止序列
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.StopSequence(UnityEngine.Component,GF.MonoBehavior.ActionSequenceSystem.ActionSequence)">
+            <summary>
+            用Component作为ID停止指定的序列
+            </summary>
+            <param name="id"></param>
+            <param name="sequence">停止指定的ActionSequence</param>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.Shower(UnityEngine.Component,System.Single)">
+            <summary>
+            延迟激活ID的GameObject
+            </summary>
+            <param name="id"></param>
+            <param name="delay">延迟</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.Hider(UnityEngine.Component,System.Single)">
+            <summary>
+            延迟反激活ID的GameObject
+            </summary>
+            <param name="id"></param>
+            <param name="delay">延迟</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.Delayer(UnityEngine.Component,System.Single,System.Action)">
+            <summary>
+            延迟调用函数
+            </summary>
+            <param name="id"></param>
+            <param name="delay">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.Looper(UnityEngine.Component,System.Single,System.Action{System.Int32})">
+            <summary>
+            延迟调用函数，循环次数作为参数
+            </summary>
+            <param name="id"></param>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.Looper(UnityEngine.Component,System.Single,System.Action)">
+            <summary>
+            无限循环调用函数
+            </summary>
+            <param name="id"></param>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.Looper(UnityEngine.Component,System.Single,System.Int32,System.Boolean,System.Action)">
+            <summary>
+            循环调用函数，并设置次数，是否立即开始
+            </summary>
+            <param name="id"></param>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.Looper(UnityEngine.Component,System.Single,System.Int32,System.Boolean,System.Action{System.Int32})">
+            <summary>
+            循环调用函数，循环次数作为参数，并设置次数，是否立即开始
+            </summary>
+            <param name="id"></param>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.WaitFor(UnityEngine.Component,System.Func{System.Boolean},System.Action)">
+            <summary>
+            等待条件判断成功后调用函数
+            </summary>
+            <param name="id"></param>
+            <param name="condition">判断函数，函数返回true，调用action</param>
+            <param name="action">调用函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.Sequence(UnityEngine.Component,GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle)">
+            <summary>
+            用Component作为ID开序列，并使用“控制句柄”
+            </summary>
+            <param name="id"></param>
+            <param name="handle">控制句柄</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.Delayer(UnityEngine.Component,GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle,System.Single,System.Action)">
+            <summary>
+            延迟调用函数
+            </summary>
+            <param name="id"></param>
+            <param name="handle">控制句柄</param>
+            <param name="delay">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.Looper(UnityEngine.Component,GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle,System.Single,System.Action)">
+            <summary>
+            无限循环调用函数
+            </summary>
+            <param name="id"></param>
+            <param name="handle">控制句柄</param>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.Looper(UnityEngine.Component,GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle,System.Single,System.Action{System.Int32})">
+            <summary>
+            无限循环调用函数
+            </summary>
+            <param name="id"></param>
+            <param name="handle">控制句柄</param>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.Looper(UnityEngine.Component,GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle,System.Single,System.Int32,System.Boolean,System.Action)">
+            <summary>
+            循环调用函数，并设置次数，是否立即开始
+            </summary>
+            <param name="id"></param>
+            <param name="handle">控制句柄</param>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx.Looper(UnityEngine.Component,GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle,System.Single,System.Int32,System.Boolean,System.Action{System.Int32})">
+            <summary>
+            循环调用函数，循环次数作为参数，并设置次数，是否立即开始
+            </summary>
+            <param name="id"></param>
+            <param name="handle">控制句柄</param>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx">
+            <summary>
+            Methods that extend known Unity components and allow to directly create and control timer from their instances
+            </summary>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.SequenceUnscaled(UnityEngine.Component)">
+            <summary>
+            用Component作为ID开序列
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.ShowerUnscaled(UnityEngine.Component,System.Single)">
+            <summary>
+            延迟激活ID的GameObject
+            </summary>
+            <param name="id"></param>
+            <param name="delay">延迟</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.HiderUnscaled(UnityEngine.Component,System.Single)">
+            <summary>
+            延迟反激活ID的GameObject
+            </summary>
+            <param name="id"></param>
+            <param name="delay">延迟</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.DelayerUnscaled(UnityEngine.Component,System.Single,System.Action)">
+            <summary>
+            延迟调用函数
+            </summary>
+            <param name="id"></param>
+            <param name="delay">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.LooperUnscaled(UnityEngine.Component,System.Single,System.Action{System.Int32})">
+            <summary>
+            延迟调用函数，循环次数作为参数
+            </summary>
+            <param name="id"></param>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.LooperUnscaled(UnityEngine.Component,System.Single,System.Action)">
+            <summary>
+            无限循环调用函数
+            </summary>
+            <param name="id"></param>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.LooperUnscaled(UnityEngine.Component,System.Single,System.Int32,System.Boolean,System.Action)">
+            <summary>
+            循环调用函数，并设置次数，是否立即开始
+            </summary>
+            <param name="id"></param>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.LooperUnscaled(UnityEngine.Component,System.Single,System.Int32,System.Boolean,System.Action{System.Int32})">
+            <summary>
+            循环调用函数，循环次数作为参数，并设置次数，是否立即开始
+            </summary>
+            <param name="id"></param>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.WaitForUnscaled(UnityEngine.Component,System.Func{System.Boolean},System.Action)">
+            <summary>
+            等待条件判断成功后调用函数
+            </summary>
+            <param name="id"></param>
+            <param name="condition">判断函数，函数返回true，调用action</param>
+            <param name="action">调用函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.SequenceUnscaled(UnityEngine.Component,GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle)">
+            <summary>
+            用Component作为ID开序列，并使用“控制句柄”
+            </summary>
+            <param name="id"></param>
+            <param name="handle">控制句柄</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.DelayerUnscaled(UnityEngine.Component,GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle,System.Single,System.Action)">
+            <summary>
+            延迟调用函数
+            </summary>
+            <param name="id"></param>
+            <param name="handle">控制句柄</param>
+            <param name="delay">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.LooperUnscaled(UnityEngine.Component,GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle,System.Single,System.Action)">
+            <summary>
+            无限循环调用函数
+            </summary>
+            <param name="id"></param>
+            <param name="handle">控制句柄</param>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.LooperUnscaled(UnityEngine.Component,GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle,System.Single,System.Action{System.Int32})">
+            <summary>
+            无限循环调用函数
+            </summary>
+            <param name="id"></param>
+            <param name="handle">控制句柄</param>
+            <param name="interval">延迟</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.LooperUnscaled(UnityEngine.Component,GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle,System.Single,System.Int32,System.Boolean,System.Action)">
+            <summary>
+            循环调用函数，并设置次数，是否立即开始
+            </summary>
+            <param name="id"></param>
+            <param name="handle">控制句柄</param>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx.LooperUnscaled(UnityEngine.Component,GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle,System.Single,System.Int32,System.Boolean,System.Action{System.Int32})">
+            <summary>
+            循环调用函数，循环次数作为参数，并设置次数，是否立即开始
+            </summary>
+            <param name="id"></param>
+            <param name="handle">控制句柄</param>
+            <param name="interval">延迟</param>
+            <param name="loopTime">循环调用次数</param>
+            <param name="isActionAtStart">是否立即开始</param>
+            <param name="action">调用的函数，循环次数作为参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:GF.MonoBehavior.ActionSequenceSystem.ActionSequence">
+            <summary>
+            行动序列类
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.CountActive">
+            <summary>
+            内存池活动元素
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.CountAll">
+            <summary>
+            内存池总数
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.nodesCount">
+            <summary>
+            获取ActionNode列表的元素个数
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.TimeAxis">
+            <summary>
+            时间轴
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.Id">
+            <summary>
+            目标组件，组件销毁的时候，本动作序列也相应销毁
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.handle">
+            <summary>
+            设置一个句柄用于正确的停止序列
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.LoopTime">
+            <summary>
+            需要循环的次数
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.Cycles">
+            <summary>
+            已经运行的次数
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.isFinshed">
+            <summary>
+            是否已经运行完
+            </summary>
+        </member>
+        <member name="P:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.bSetStop">
+            <summary>
+            是否下一帧停止
+            </summary>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.Hide">
+            <summary>
+            设置GameObject隐藏（SetActive）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.Show">
+            <summary>
+            设置GameObject显示（SetActive(false)）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.ToggleActive">
+            <summary>
+            设置GameObject反显示隐藏（SetActive(!activeSelf)）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.Interval(System.Single)">
+            <summary>
+            增加一个运行节点
+            </summary>
+            <param name="interval">时间间隔</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.Action(System.Action)">
+            <summary>
+            增加一个行动节点
+            </summary>
+            <param name="action">调用的函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.Action(System.Action{System.Int32})">
+            <summary>
+            增加一个带循环次数行动节点
+            </summary>
+            <param name="action">调用的函数带循环次数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.WaitFor(System.Func{System.Boolean})">
+            <summary>
+            增加一个条件节点
+            </summary>
+            <param name="condition">判断条件函数，返回true则跳下一节点</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.Loop(System.Int32)">
+            <summary>
+            设置循环
+            </summary>
+            <param name="loopTime">循环次数，-1为无限，0和1都是1次</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.MonoBehavior.ActionSequenceSystem.ActionSequence.Stop(UnityEngine.Component)">
+            <summary>
+            用指定的ID去尝试停止，ID不对的话，可能是已经停止的了
+            </summary>
+            <param name="callerID"></param>
+        </member>
+        <member name="T:GF.ResourcesLoad.CResourceManager">
+            <summary>
+            先写一个简单的资源加载，后面会扩展完善
+            </summary>
+        </member>
+        <member name="F:GF.ResourcesLoad.CResourceManager.resLoadType">
+            <summary>
+            资源加载类型
+            </summary>
+        </member>
+        <member name="M:GF.ResourcesLoad.CResourceManager.Load``1(System.String)">
+            <summary>
+            加载资源
+            </summary>
+            <typeparam name="T">资源路径</typeparam>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GF.ResourcesLoad.ResLoadLocation">
+            <summary>
+            资源路径
+            </summary>
+        </member>
+        <member name="F:GF.ResourcesLoad.ResLoadLocation.Catch">
+            <summary>
+            一个只读路径，用的很少
+            </summary>
+        </member>
+        <member name="M:GF.Utility.CommonUtility.SetActive(UnityEngine.GameObject,System.Boolean)">
+            <summary>
+            设置物体显示和隐藏
+            </summary>
+            <param name="obj"></param>
+            <param name="isActive"></param>
+        </member>
+        <member name="M:GF.Utility.CommonUtility.SetChildrenActive(UnityEngine.GameObject,System.Boolean)">
+            <summary>
+            设置所有子节点显示和隐藏
+            </summary>
+            <param name="obj"></param>
+            <param name="isActive"></param>
+        </member>
+        <member name="M:GF.Utility.CommonUtility.DestroyAllChildren(UnityEngine.Transform,System.Boolean,System.Boolean)">
+            <summary>
+            删除所有子物体
+            </summary>
+            <param name="transform"></param>
+            <param name="immediate">是否立即删除</param>
+            <param name="containsSelf">是否删除自己</param>
+        </member>
+        <member name="M:GF.Utility.CommonUtility.FindChild(UnityEngine.Transform,System.String)">
+            <summary>
+            查找子元素
+            </summary>
+            <param name="transform"></param>
+            <param name="childName">子元素名</param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.Utility.CommonUtility.AddChild(UnityEngine.GameObject,UnityEngine.Transform,System.Boolean)">
+            <summary>
+            添加子节点
+            </summary>
+            <param name="child"></param>
+            <param name="father"></param>
+            <param name="resetSize">是否重置坐标</param>
+        </member>
+        <member name="M:GF.Utility.CommonUtility.AddUIChild(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
+            <summary>
+            添加UI子元素
+            </summary>
+            <param name="child"></param>
+            <param name="father"></param>
+            <param name="resetSize">是否重置</param>
+        </member>
+        <member name="M:GF.Utility.CommonUtility.SpriteToTexture(UnityEngine.Sprite)">
+            <summary>
+            Sprite转换Texture
+            </summary>
+        </member>
+        <member name="M:GF.Utility.CommonUtility.SerializeTime(System.DateTime)">
+            <summary>
+            序列化时间
+            </summary>
+        </member>
+        <member name="M:GF.Utility.CommonUtility.DeserializeTime(System.Int64)">
+            <summary>
+            反序列化时间
+            </summary>
+        </member>
+        <member name="M:GF.Utility.Extensions.GetAllComponents``1(UnityEngine.Transform,System.Boolean)">
+            <summary>
+            获取所有组件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="t"></param>
+            <param name="isIncludeRoot"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.Utility.Extensions.GetOrAddComponent``1(UnityEngine.Component)">
+            <summary>
+            获取组件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="child"></param>
+            <returns>返回组件</returns>
+        </member>
+        <member name="M:GF.Utility.Extensions.GetPath(UnityEngine.Transform)">
+            <summary>
+            得到节点全路径
+            </summary>
+            <remarks>
+            ref: http://answers.unity3d.com/questions/8500/how-can-i-get-the-full-path-to-a-gameobject.html
+            </remarks>
+            <param name="current"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GF.Utility.Extensions.GetPath(UnityEngine.Component)">
+            <summary>
+            得到节点全路径
+            </summary>
+            <param name="component"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
