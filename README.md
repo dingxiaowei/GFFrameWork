@@ -27,6 +27,9 @@ Unity框架
 * UGUI
 * Dotween
 
+## Demo下载
+[下载](http://staticresource-1251021262.cossh.myqcloud.com/test/dialgameUpdate%E5%A4%96%E7%BD%91%E7%89%88%E6%9C%AC.apk )
+
 ## 教程说明
 教程文档请看wiki，文档陆陆续续完善中！
 [更多教程](http://dingxiaowei.cn)
