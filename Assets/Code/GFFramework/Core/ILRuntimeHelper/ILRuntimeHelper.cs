@@ -51,8 +51,9 @@ namespace GFFramework
             AdapterRegister.RegisterCrossBindingAdaptor(AppDomain);
             ILRuntime.Runtime.Generated.CLRBindings.Initialize(AppDomain);
             ILRuntime.Runtime.Generated.CLRManualBindings.Initialize(AppDomain);
-//          ILRuntime.Runtime.Generated.PreCLRBuilding.Initialize(AppDomain);
-            //
+            //ILRuntime.Runtime.Generated.PreCLRBuilding.Initialize(AppDomain);
+            
+            //ILR断点调试
             ILRuntimeDelegateHelper.Register(AppDomain);
             JsonMapper.RegisterILRuntimeCLRRedirection(AppDomain);
             if (Application.isEditor)
@@ -60,9 +61,6 @@ namespace GFFramework
                 AppDomain.DebugService.StartDebugService(56000);
                 Debug.Log("热更调试器 准备待命~");
             }
-
-            //
-            AppDomain.Invoke("HotfixCheck", "Log", null, null);
         }
 
 

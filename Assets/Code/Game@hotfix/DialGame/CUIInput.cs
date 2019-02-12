@@ -19,7 +19,6 @@ public class CUIInput : SubWindow
     public override void Init()
     {
         base.Init();
-
     }
 
     public override void Close()

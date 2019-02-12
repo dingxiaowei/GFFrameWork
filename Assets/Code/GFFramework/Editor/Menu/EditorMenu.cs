@@ -10,19 +10,11 @@ namespace GFFramework.Editor
 { 
     public class GFEditorMenu
     {
-        [MenuItem("Tools/初始化", false, 1)]
+        [MenuItem("Tools/初始化目录", false, 1)]
         public static void GFInit()
         {
            GFFrameInit.Init();
         }
-        
-        [MenuItem("Tools/UI工作流/创建窗口", false, 51)]
-        public static void OpenEditorWindow_CreateUI()
-        {
-            var window = (EditorWindows_UIWorker) EditorWindow.GetWindow(typeof(EditorWindows_UIWorker), false, "UI创建工具");
-            window.Show();
-        }
-        //
 
         [MenuItem("Tools/1.DLL打包", false, 52)]
         public static void ExecuteBuildDLL()

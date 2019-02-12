@@ -14,6 +14,11 @@ namespace GFFramework.Mgr
         }
     }
     
+    /// <summary>
+    /// Manager基类
+    /// </summary>
+    /// <typeparam name="T">Manager类型</typeparam>
+    /// <typeparam name="V">被管理者所用的类标签</typeparam>
     public class ManagerBase<T,V>:IMgr  where T: IMgr, new() 
                                         where V: ManagerAtrribute
     {
@@ -56,8 +61,6 @@ namespace GFFramework.Mgr
                 }             
             }
         }
-
-
 
 
         virtual public void Init()

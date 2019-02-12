@@ -2,7 +2,7 @@
 
 namespace Game.UI
 {
-    public class M_SubWindow : M_AWindow
+    public class M_SubWindow : M_WindowBase
     {
         public M_SubWindow(Transform transform) : base(transform)
         {

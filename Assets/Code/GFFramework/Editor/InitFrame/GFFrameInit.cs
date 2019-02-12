@@ -10,7 +10,9 @@ namespace GFFramework.Editor
 {
     static public class GFFrameInit
     {
-
+        /// <summary>
+        /// 工程必须要用到的目录
+        /// </summary>
         static private List<string> PathList = new List<string>()
         {
             "3rdPlugins",
@@ -46,7 +48,7 @@ namespace GFFramework.Editor
                 }
             }
 
-            EditorUtility.DisplayDialog("提示", "目录生成完毕,请放心食用~", "OK");
+            EditorUtility.DisplayDialog("提示", "目录生成完毕", "OK");
             AssetDatabase.Refresh();
         }
     }

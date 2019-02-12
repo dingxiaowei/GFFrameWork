@@ -14,15 +14,17 @@ public class EditorWindow_OnkeyBuildAsset : EditorWindow
 
     private EditorWindow_ScriptBuildDll editorScript;
     private EditorWindow_GenAssetBundle editorAsset;
-   public void Show()
-   {
-      this.editorTable  = new EditorWindow_Table();
-      this.editorAsset  = new EditorWindow_GenAssetBundle();
-      this.editorScript = new EditorWindow_ScriptBuildDll();
+    private string currentVersion = "";
+
+    public void Show()
+    {
+        this.editorTable  = new EditorWindow_Table();
+        this.editorAsset  = new EditorWindow_GenAssetBundle();
+        this.editorScript = new EditorWindow_ScriptBuildDll();
        
-       this.minSize = this.maxSize = new Vector2(1050,600);
-       base.Show();
-   }
+        this.minSize = this.maxSize = new Vector2(1050,600);
+        base.Show();
+    }
 
     private void OnGUI()
     {
@@ -72,6 +74,9 @@ public class EditorWindow_OnkeyBuildAsset : EditorWindow
             isGenAndroidAssets = GUILayout.Toggle(isGenAndroidAssets, "生成Android资源");
             //
             GUILayout.Label("导出地址:" + exportPath, GUILayout.Width(500));
+
+            GUILayout.Label("增量打包请输入版本号,初始包可以忽略(默认起始版本号:1.0)");
+            currentVersion = EditorGUILayout.TextField("Version: ", currentVersion);
             //
             if (GUILayout.Button("一键导出", GUILayout.Width(350), GUILayout.Height(30)))
             {
@@ -120,10 +125,11 @@ public class EditorWindow_OnkeyBuildAsset : EditorWindow
             //
             if (GUILayout.Button("资源转hash格式", GUILayout.Width(350), GUILayout.Height(30)))
             {
+                Debug.LogError("defaultVersion:"+ currentVersion);
                 exportPath = EditorUtility.OpenFolderPanel("选择导出目录", Application.dataPath.Replace("Assets",""), "");
                 if (Directory.Exists(exportPath))
                 {
-                    AssetUploadToServer.Start(exportPath,"");
+                    AssetUploadToServer.Start(exportPath,"", currentVersion);
                 }
                 else
                 {

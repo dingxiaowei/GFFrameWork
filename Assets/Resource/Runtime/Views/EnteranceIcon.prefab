@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2898884651259106381}
   - component: {fileID: 2038622353670099918}
   - component: {fileID: 4226910208667773076}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 5772163224934542799}
   - component: {fileID: 779151020154667767}
   - component: {fileID: 40903862739296656}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EnteranceIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

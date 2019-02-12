@@ -33,6 +33,10 @@ public class CUIIcon : SubWindow
             {
                 UIManager.Inst.SendMessage((int)WinEnum.Win_Game, data);
             }
+            else
+            {
+                
+            }
         });
     }
 

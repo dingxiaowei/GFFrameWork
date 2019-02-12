@@ -31,7 +31,12 @@ public class ScriptBiuldTools
         //这里是引入unity所有引用的dll
         var u3dUI =  EditorApplication.applicationContentsPath+@"\UnityExtensions\Unity\GUISystem";
         var u3dEngine = EditorApplication.applicationContentsPath+@"\Managed\UnityEngine";
-
+        Debug.LogError("*******");
+        Debug.LogError(EditorApplication.applicationContentsPath);
+        Debug.LogError(u3dUI);
+        Debug.LogError(u3dEngine);
+        Debug.Log(Directory.Exists(u3dUI));
+        Debug.Log(Directory.Exists(u3dEngine));
         if (Directory.Exists(u3dUI) == false || Directory.Exists(u3dEngine) == false)
         {
             EditorUtility.DisplayDialog("提示", "u3d根目录不存在,请修改ScriptBiuld_Service类中,u3dui 和u3dengine 的dll目录", "OK");

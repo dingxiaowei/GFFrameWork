@@ -26,6 +26,8 @@ namespace ILRuntime.Runtime.Generated
             method = type.GetMethod("set_text", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, set_text_0);
 
+            app.RegisterCLRCreateArrayInstance(type, s => new UnityEngine.UI.Text[s]);
+
 
         }
 

@@ -21,7 +21,7 @@ namespace Game.UI
         /// <summary>
         /// UI窗口字典
         /// </summary>
-        private Dictionary<int, M_AWindow> windowMap = null;
+        private Dictionary<int, M_WindowBase> windowMap = null;
 
         /// <summary>
         /// ui的三个层级
@@ -36,14 +36,14 @@ namespace Game.UI
         override public void Init()
         {
             //初始化
-            windowMap = new Dictionary<int, M_AWindow>();
+            windowMap = new Dictionary<int, M_WindowBase>();
             Bottom = GameObject.Find("UIRoot/Bottom").transform;
             Center = GameObject.Find("UIRoot/Center").transform;
             Top = GameObject.Find("UIRoot/Top").transform;
         }
 
         //
-        private M_AWindow CreateWindow(int uiIndex)
+        private M_WindowBase CreateWindow(int uiIndex)
         {
             var classData = this.GetCalssData(uiIndex.ToString());
             if (classData == null)
@@ -54,7 +54,7 @@ namespace Game.UI
 
             //
             var attr = classData.Attribute as M_UIAttribute;
-            var window = Activator.CreateInstance(classData.Type, new object[] {attr.ResourcePath}) as M_AWindow;
+            var window = Activator.CreateInstance(classData.Type, new object[] {attr.ResourcePath}) as M_WindowBase;
             //
             return window;
         }
@@ -258,9 +258,9 @@ namespace Game.UI
         }
 
 
-        public M_AWindow GetWindow(int uiIndex)
+        public M_WindowBase GetWindow(int uiIndex)
         {
-            M_AWindow win = null;
+            M_WindowBase win = null;
 
             this.windowMap.TryGetValue(uiIndex, out win);
 

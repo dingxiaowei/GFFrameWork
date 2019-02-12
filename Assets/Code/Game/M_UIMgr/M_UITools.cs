@@ -38,7 +38,7 @@ namespace Game.UI
         /// 绑定Windows的值
         /// </summary>
         /// <param name="o"></param>
-        static public void AutoSetTransformPath(M_AWindow win)
+        static public void AutoSetTransformPath(M_WindowBase win)
         {
             var vt = win.GetType();
             var fields = vt.GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);

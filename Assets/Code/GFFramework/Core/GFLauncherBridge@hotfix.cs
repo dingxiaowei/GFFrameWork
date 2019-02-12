@@ -105,13 +105,15 @@ public class GFLauncherBridge
         {
             gameStart.Start();
             //
-            GFLauncher.OnUpdate = gameStart.Update;
-            GFLauncher.OnLateUpdate = gameStart.LateUpdate;
+            GFLauncher.OnUpdate += gameStart.Update;
+            GFLauncher.OnLateUpdate += gameStart.LateUpdate;
         }
         Debugger.Log("游戏生命周期准备完毕!");
+        Debug.LogError(mgrs.Count);
         //所有管理器开始工作
         foreach (var m in mgrs)
         {
+            Debug.LogError("start");
             m.Start();
         }
         Debugger.Log("管理器开始工作!");

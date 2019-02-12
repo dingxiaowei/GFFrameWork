@@ -31,6 +31,16 @@ namespace GFFramework
     /// </summary>
     static public class VersionContorller
     {
+        private static List<AssetItem> curDownloadList = null;
+        private static int curDonloadIndex = 0;
+        private static string serverConfig = null;
+
+
+        static public void Start(string serverConfigPath, string localConfigPath, Action<int, int> onProcess, Action<string> onError)
+        {
+            IEnumeratorTool.StartCoroutine(IE_Start(serverConfigPath, localConfigPath, onProcess, onError));
+        }
+
         /// <summary>
         /// 开始任务
         /// </summary>
@@ -39,157 +49,55 @@ namespace GFFramework
         /// <param name="onProcess"></param>
         /// <param name="onError"></param>
         /// 返回码: -1：error  0：success
-        static async public Task<int> Start(string serverConfigPath, string localConfigPath, Action<int, int> onProcess, Action<string> onError, Action OnDownloadFinished = null)
+        static private IEnumerator IE_Start(string serverConfigPath, string localConfigPath, Action<int, int> onProcess, Action<string> onError)
         {
-
-            IPath.Combine("", "");
-            var client = HttpMgr.Inst.GetFreeHttpClient();
             var platform = Utils.GetPlatformPath(Application.platform);
-            //开始下载服务器配置
-            var serverPath = serverConfigPath + "/" + platform + "_Server/" + platform + "_VersionConfig.json";
-            Debug.Log("server:" + serverPath);
-            string serverConfig = "";
-            try
-            {
-                serverConfig = await client.DownloadStringTaskAsync(serverPath);
-                UberDebug.Log("服务器资源配置:" + serverConfig);
-            }
-            catch (Exception e)
-            {
-                onError(e.Message);
-                return -1;
-            }
 
-            var serverconf = LitJson.JsonMapper.ToObject<AssetConfig>(serverConfig);
-            AssetConfig localconf = new AssetConfig();
-            var localPath = localConfigPath + "/" + platform + "_Server/" + platform + "_VersionConfig.json";
-            UberDebug.Log("localConfigPath:" + localPath);
+            if (curDownloadList == null || curDownloadList.Count == 0)
+            {
+                //开始下载服务器配置
+                var serverPath = serverConfigPath + "/" + platform + "_Server/" + platform + "_VersionConfig.json";
+                Debugger.Log("server:" + serverPath);
 
-            if (File.Exists(localPath))
-            {
-                localconf = LitJson.JsonMapper.ToObject<AssetConfig>(File.ReadAllText(localPath));
-            }
-            else
-            {
-                UberDebug.LogError("Can't find path：" + localPath);
-                localconf.Version = 0;
-                localconf.Platfrom = Utils.GetPlatformPath(Application.platform);
-            }
+                //下载config
+                {
+                    var wr = UnityWebRequest.Get(serverPath);
+                    yield return wr.SendWebRequest();
+                    if (wr.error == null)
+                    {
+                        serverConfig = wr.downloadHandler.text;
+                        Debugger.Log("服务器资源配置:" + serverConfig);
+                    }
+                    else
+                    {
+                        Debug.LogError(wr.error);
+                    }
+                }
 
-            UberDebug.Log(string.Format("<color=red>serverconf.Version:{0} localconf.Version:{1} </color>", serverconf.Version, localconf.Version));
-            if (serverconf.Version > localconf.Version)
-            {
+                var serverconf = LitJson.JsonMapper.ToObject<AssetConfig>(serverConfig);
+                AssetConfig localconf = null;
+                var localPath = string.Format("{0}/{1}/{2}_VersionConfig.json", localConfigPath, platform, platform);
+
+                if (File.Exists(localPath))
+                {
+                    localconf = LitJson.JsonMapper.ToObject<AssetConfig>(File.ReadAllText(localPath));
+                }
+
                 //对比差异列表进行下载
-                var list = CompareConfig(localConfigPath, localconf, serverconf);
-                if (list.Count > 0)
+                curDownloadList = CompareConfig(localconf, serverconf);
+                if (curDownloadList.Count > 0)
                 {
                     //预通知要进入热更模式
-                    onProcess(0, list.Count);
-                }
-
-                int count = 0;
-                foreach (var item in list)
-                {
-                    count++;
-                    var sp = serverConfigPath + "/" + platform + "_Server/" + item.HashName;
-                    var lp = localConfigPath + "/" + platform + "/" + item.LocalPath;
-
-                    //创建目录
-                    var direct = Path.GetDirectoryName(lp);
-                    if (Directory.Exists(direct) == false)
-                    {
-                        Directory.CreateDirectory(direct);
-                    }
-
-                    //下载
-                    try
-                    {
-                        await client.DownloadFileTaskAsync(sp, lp);
-                    }
-                    catch (Exception e)
-                    {
-                        UberDebug.LogError(sp);
-                        onError(e.Message);
-                        return -1;
-                    }
-
-                    UberDebug.Log(string.Format("下载成功：{0}", sp));
-                    onProcess(count, list.Count);
-                }
-
-                //写到本地
-                if (list.Count > 0)
-                {
-                    File.WriteAllText(localPath, serverConfig);
-                    UberDebug.Log(string.Format("Write Config to local,localPath:{0}", localPath));
-                    if (OnDownloadFinished != null)
-                        OnDownloadFinished();
-                }
-                else
-                {
-                    UberDebug.Log("Need't update file,Will enter game...");
-                    if (OnDownloadFinished != null)
-                        OnDownloadFinished();
+                    onProcess(0, curDownloadList.Count);
                 }
             }
-            else
+
+
+            while (curDonloadIndex < curDownloadList.Count)
             {
-                //版本号相同,不需要对比更新
-                UberDebug.Log("Need't update file,Will enter game...");
-                if (OnDownloadFinished != null)
-                    OnDownloadFinished();
-            }
 
-            client.Dispose();
-            return 0;
-        }
+                var item = curDownloadList[curDonloadIndex];
 
-        static public IEnumerator IEStart(string serverConfigPath, string localConfigPath, Action<int, int> onProcess, Action<string> onError, Action OnDownloadFinished = null)
-        {
-            IPath.Combine("", "");
-            var client = HttpMgr.Inst.GetFreeHttpClient();
-            var platform = Utils.GetPlatformPath(Application.platform);
-            //开始下载服务器配置
-            var serverPath = serverConfigPath + "/" + platform + "_Server/" + platform + "_VersionConfig.json";
-            Debug.Log("server:" + serverPath);
-            string serverConfig = "";
-            //下载config
-            {
-                var wr = UnityWebRequest.Get(serverPath);
-                yield return wr.SendWebRequest();
-                if (wr.error == null)
-                {
-                    serverConfig = wr.downloadHandler.text;
-                    UberDebug.Log("服务器资源配置:" + serverConfig);
-                }
-                else
-                {
-                    UberDebug.LogError(wr.error);
-                }
-
-            }
-
-            var serverconf = LitJson.JsonMapper.ToObject<AssetConfig>(serverConfig);
-            AssetConfig localconf = null;
-            var localPath = localConfigPath + "/" + platform + "_Server/" + platform + "_VersionConfig.json";
-
-            if (File.Exists(localPath))
-            {
-                localconf = LitJson.JsonMapper.ToObject<AssetConfig>(File.ReadAllText(localPath));
-            }
-
-            //对比差异列表进行下载
-            var list = CompareConfig(localConfigPath, localconf, serverconf);
-            if (list.Count > 0)
-            {
-                //预通知要进入热更模式
-                onProcess(0, list.Count);
-            }
-
-            int count = 0;
-            foreach (var item in list)
-            {
-                count++;
                 var sp = serverConfigPath + "/" + platform + "_Server/" + item.HashName;
                 var lp = localConfigPath + "/" + platform + "/" + item.LocalPath;
 
@@ -206,41 +114,47 @@ namespace GFFramework
                 if (wr.error == null)
                 {
                     File.WriteAllBytes(lp, wr.downloadHandler.data);
-                    UberDebug.Log("下载成功：" + sp);
-                    onProcess(count, list.Count);
+                    Debugger.Log("下载成功：" + sp);
+                    onProcess(curDonloadIndex, curDownloadList.Count - 1);
                 }
                 else
                 {
-                    UberDebug.LogError("下载失败:" + wr.error);
+                    Debugger.LogError("下载失败:" + wr.error);
                     onError(wr.error);
+                    yield break;
                 }
+
+                //自增
+                curDonloadIndex++;
             }
 
-            //写到本地
-            //写到本地
-            if (list.Count > 0)
+            //写到本地  写confgig
+            if (curDownloadList.Count > 0)
             {
-                File.WriteAllText(localPath, serverConfig);
-                UberDebug.Log(string.Format("Write Config to local,localPath:{0}", localPath));
-                if (OnDownloadFinished != null)
-                    OnDownloadFinished();
+                File.WriteAllText(string.Format("{0}/{1}/{2}_VersionConfig.json", localConfigPath, platform, platform), serverConfig);
             }
             else
             {
-                UberDebug.Log("Need't update file,Will enter game...");
-                if (OnDownloadFinished != null)
-                    OnDownloadFinished();
+                Debugger.Log("不用更新");
+                onProcess(1, 1);
             }
+
+
+            //重置
+            curDownloadList = null;
+            curDonloadIndex = 0;
+            serverConfig = null;
         }
 
 
         /// <summary>
         /// 对比
         /// </summary>
-        static public List<AssetItem> CompareConfig(string root, AssetConfig local, AssetConfig server)
+        static public List<AssetItem> CompareConfig(AssetConfig local, AssetConfig server)
         {
             if (local == null)
             {
+
                 return server.Assets;
             }
 
@@ -259,11 +173,6 @@ namespace GFFramework
                     }
                 }
             }
-            else
-            {
-                UberDebug.LogError("Platform not same!");
-            }
-
             return list;
         }
     }

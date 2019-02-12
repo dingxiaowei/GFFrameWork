@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using GFFramework.ScreenView;
+﻿using GFFramework.ScreenView;
 using GFFramework.UI;
+using GF.Debug;
 
 [ScreenView("GamePanel")]
 public class ScreenView_Game_Windows : IScreenView
@@ -19,7 +16,7 @@ public class ScreenView_Game_Windows : IScreenView
         UIManager.Inst.LoadWindows((int)WinEnum.Win_Game);
         UIManager.Inst.ShowWindow((int)WinEnum.Win_Game);
         //
-        Debug.Log("进入GamePanel");
+        Debugger.Log("进入GamePanel");
     }
 
     public void BeginExit()

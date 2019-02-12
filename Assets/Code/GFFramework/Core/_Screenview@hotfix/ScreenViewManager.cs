@@ -59,6 +59,7 @@ namespace GFFramework.ScreenView
 
         public override void Start()
         {
+            Debug.LogError("开始执行ScreenViewManager.Manager");
             if (string.IsNullOrEmpty(this.defaultScreenName) == false)
             {
                 MainLayer.BeginNavTo(this.defaultScreenName);

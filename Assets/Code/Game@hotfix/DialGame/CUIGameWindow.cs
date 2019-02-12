@@ -1,12 +1,11 @@
 ﻿using Game.Data;
 using GF.Debug;
+using GFFramework;
 using GFFramework.ScreenView;
 using GFFramework.UI;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
-using GFFramework;
 
 [UI((int)WinEnum.Win_Game, "Windows/UIGamePanel")]
 public class CUIGameWindow : WindowBase

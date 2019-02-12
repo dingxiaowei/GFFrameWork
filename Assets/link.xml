@@ -1,14 +1,14 @@
 <linker>
   <assembly fullname="UnityEngine.CoreModule">
     <type fullname="UnityEngine.AndroidInput" preserve="all" />
+    <type fullname="UnityEngine.jvalue" preserve="all" />
+    <type fullname="UnityEngine.AndroidJNIHelper" preserve="all" />
+    <type fullname="UnityEngine.AndroidJNI" preserve="all" />
     <type fullname="UnityEngine.AndroidJavaObject" preserve="all" />
     <type fullname="UnityEngine.AndroidJavaClass" preserve="all" />
     <type fullname="UnityEngine.AndroidJavaRunnable" preserve="all" />
     <type fullname="UnityEngine.AndroidJavaException" preserve="all" />
     <type fullname="UnityEngine.AndroidJavaProxy" preserve="all" />
-    <type fullname="UnityEngine.jvalue" preserve="all" />
-    <type fullname="UnityEngine.AndroidJNIHelper" preserve="all" />
-    <type fullname="UnityEngine.AndroidJNI" preserve="all" />
     <type fullname="UnityEngine.Android.Permission" preserve="all" />
     <type fullname="UnityEngine.WeightedMode" preserve="all" />
     <type fullname="UnityEngine.Keyframe" preserve="all" />
@@ -112,11 +112,15 @@
     <type fullname="UnityEngine.ExposedReference`1" preserve="all" />
     <type fullname="UnityEngine.FailedToLoadScriptObject" preserve="all" />
     <type fullname="UnityEngine.FlareLayer" preserve="all" />
+    <type fullname="UnityEngine.Rendering.SynchronisationStage" preserve="all" />
+    <type fullname="UnityEngine.Rendering.GPUFence" preserve="all" />
+    <type fullname="UnityEngine.RectOffset" preserve="all" />
+    <type fullname="UnityEngine.GUIElement" preserve="all" />
+    <type fullname="UnityEngine.GUITexture" preserve="all" />
+    <type fullname="UnityEngine.GUILayer" preserve="all" />
     <type fullname="UnityEngine.GameObject" preserve="all" />
     <type fullname="UnityEngine.GeometryUtility" preserve="all" />
     <type fullname="UnityEngine.Gizmos" preserve="all" />
-    <type fullname="UnityEngine.Rendering.SynchronisationStage" preserve="all" />
-    <type fullname="UnityEngine.Rendering.GPUFence" preserve="all" />
     <type fullname="UnityEngine.GradientColorKey" preserve="all" />
     <type fullname="UnityEngine.GradientAlphaKey" preserve="all" />
     <type fullname="UnityEngine.GradientMode" preserve="all" />
@@ -274,10 +278,6 @@
     <type fullname="UnityEngine.SkinnedMeshRenderer" preserve="all" />
     <type fullname="UnityEngine.MeshRenderer" preserve="all" />
     <type fullname="UnityEngine.Rendering.GraphicsSettings" preserve="all" />
-    <type fullname="UnityEngine.RectOffset" preserve="all" />
-    <type fullname="UnityEngine.GUIElement" preserve="all" />
-    <type fullname="UnityEngine.GUITexture" preserve="all" />
-    <type fullname="UnityEngine.GUILayer" preserve="all" />
     <type fullname="UnityEngine.TouchScreenKeyboard_InternalConstructorHelperArguments" preserve="all" />
     <type fullname="UnityEngine.FullScreenMovieControlMode" preserve="all" />
     <type fullname="UnityEngine.FullScreenMovieScalingMode" preserve="all" />
@@ -302,7 +302,6 @@
     <type fullname="UnityEngine.LocationService+HeadingInfo" preserve="all" />
     <type fullname="UnityEngine.Compass" preserve="all" />
     <type fullname="UnityEngine.Input" preserve="all" />
-    <type fullname="UnityEngine.iOS.SystemGestureDeferMode" preserve="all" />
     <type fullname="JetBrains.Annotations.CanBeNullAttribute" preserve="all" />
     <type fullname="JetBrains.Annotations.NotNullAttribute" preserve="all" />
     <type fullname="JetBrains.Annotations.StringFormatMethodAttribute" preserve="all" />
@@ -324,13 +323,13 @@
     <type fullname="JetBrains.Annotations.AssertionMethodAttribute" preserve="all" />
     <type fullname="JetBrains.Annotations.LinqTunnelAttribute" preserve="all" />
     <type fullname="UnityEngine.KeyCode" preserve="all" />
+    <type fullname="UnityEngine.LODFadeMode" preserve="all" />
+    <type fullname="UnityEngine.LOD" preserve="all" />
+    <type fullname="UnityEngine.LODGroup" preserve="all" />
     <type fullname="UnityEngine.LayerMask" preserve="all" />
     <type fullname="UnityEngine.LightmappingMode" preserve="all" />
     <type fullname="UnityEngine.LightProbeGroup" preserve="all" />
     <type fullname="UnityEngine.LineUtility" preserve="all" />
-    <type fullname="UnityEngine.LODFadeMode" preserve="all" />
-    <type fullname="UnityEngine.LOD" preserve="all" />
-    <type fullname="UnityEngine.LODGroup" preserve="all" />
     <type fullname="UnityEngine.ManagedStreamHelpers" preserve="all" />
     <type fullname="UnityEngine.FrustumPlanes" preserve="all" />
     <type fullname="UnityEngine.Matrix4x4" preserve="all" />
@@ -625,6 +624,7 @@
     <type fullname="UnityEngine.WaitUntil" preserve="all" />
     <type fullname="UnityEngine.WaitWhile" preserve="all" />
     <type fullname="UnityEngine.YieldInstruction" preserve="all" />
+    <type fullname="UnityEngine.iOS.SystemGestureDeferMode" preserve="all" />
     <type fullname="UnityEngine.Assertions.Assert" preserve="all" />
     <type fullname="UnityEngine.Assertions.AssertionException" preserve="all" />
     <type fullname="UnityEngine.Assertions.AssertionMessageUtil" preserve="all" />
@@ -713,64 +713,8 @@
     <type fullname="UnityEngine.Internal.DefaultValueAttribute" preserve="all" />
     <type fullname="UnityEngine.Internal.ExcludeFromDocsAttribute" preserve="all" />
     <type fullname="UnityEngine.Internal.ISubAssetNotDuplicatable" preserve="all" />
-    <type fullname="UnityEngine.iPhoneScreenOrientation" preserve="all" />
-    <type fullname="UnityEngine.iPhoneNetworkReachability" preserve="all" />
-    <type fullname="UnityEngine.iPhoneGeneration" preserve="all" />
-    <type fullname="UnityEngine.iPhoneSettings" preserve="all" />
-    <type fullname="UnityEngine.iPhoneTouchPhase" preserve="all" />
-    <type fullname="UnityEngine.iPhoneTouch" preserve="all" />
-    <type fullname="UnityEngine.iPhoneMovieControlMode" preserve="all" />
-    <type fullname="UnityEngine.iPhoneMovieScalingMode" preserve="all" />
-    <type fullname="UnityEngine.iPhoneUtils" preserve="all" />
-    <type fullname="UnityEngine.iPhoneKeyboardType" preserve="all" />
-    <type fullname="UnityEngine.iPhoneKeyboard" preserve="all" />
-    <type fullname="UnityEngine.iPhoneAccelerationEvent" preserve="all" />
-    <type fullname="UnityEngine.iPhoneOrientation" preserve="all" />
-    <type fullname="UnityEngine.iPhoneInput" preserve="all" />
-    <type fullname="UnityEngine.iPhone" preserve="all" />
-    <type fullname="UnityEngine.iOSActivityIndicatorStyle" preserve="all" />
-    <type fullname="UnityEngine.CalendarIdentifier" preserve="all" />
-    <type fullname="UnityEngine.CalendarUnit" preserve="all" />
-    <type fullname="UnityEngine.LocalNotification" preserve="all" />
-    <type fullname="UnityEngine.RemoteNotification" preserve="all" />
-    <type fullname="UnityEngine.RemoteNotificationType" preserve="all" />
-    <type fullname="UnityEngine.NotificationServices" preserve="all" />
-    <type fullname="UnityEngine.ADBannerView" preserve="all" />
-    <type fullname="UnityEngine.ADBannerView+Layout" preserve="all" />
-    <type fullname="UnityEngine.ADBannerView+Type" preserve="all" />
-    <type fullname="UnityEngine.ADBannerView+BannerWasClickedDelegate" preserve="all" />
-    <type fullname="UnityEngine.ADBannerView+BannerWasLoadedDelegate" preserve="all" />
-    <type fullname="UnityEngine.ADInterstitialAd" preserve="all" />
-    <type fullname="UnityEngine.ADInterstitialAd+InterstitialWasLoadedDelegate" preserve="all" />
-    <type fullname="UnityEngine.iOS.ADBannerView" preserve="all" />
-    <type fullname="UnityEngine.iOS.ADBannerView+Layout" preserve="all" />
-    <type fullname="UnityEngine.iOS.ADBannerView+Type" preserve="all" />
-    <type fullname="UnityEngine.iOS.ADBannerView+BannerWasClickedDelegate" preserve="all" />
-    <type fullname="UnityEngine.iOS.ADBannerView+BannerWasLoadedDelegate" preserve="all" />
-    <type fullname="UnityEngine.iOS.ADBannerView+BannerFailedToLoadDelegate" preserve="all" />
-    <type fullname="UnityEngine.iOS.ADInterstitialAd" preserve="all" />
-    <type fullname="UnityEngine.iOS.ADInterstitialAd+InterstitialWasLoadedDelegate" preserve="all" />
-    <type fullname="UnityEngine.iOS.ADInterstitialAd+InterstitialWasViewedDelegate" preserve="all" />
-    <type fullname="UnityEngine.iOS.DeviceGeneration" preserve="all" />
-    <type fullname="UnityEngine.iOS.ActivityIndicatorStyle" preserve="all" />
-    <type fullname="UnityEngine.iOS.Device" preserve="all" />
-    <type fullname="UnityEngine.iOS.CalendarIdentifier" preserve="all" />
-    <type fullname="UnityEngine.iOS.CalendarUnit" preserve="all" />
-    <type fullname="UnityEngine.iOS.NotificationType" preserve="all" />
-    <type fullname="UnityEngine.iOS.NotificationHelper" preserve="all" />
-    <type fullname="UnityEngine.iOS.LocalNotification" preserve="all" />
-    <type fullname="UnityEngine.iOS.RemoteNotification" preserve="all" />
-    <type fullname="UnityEngine.iOS.NotificationServices" preserve="all" />
-    <type fullname="UnityEngine.Apple.ReplayKit.ReplayKit" preserve="all" />
-    <type fullname="UnityEngine.Apple.ReplayKit.ReplayKit+BroadcastStatusCallback" preserve="all" />
-    <type fullname="UnityEngine.iOS.OnDemandResourcesRequest" preserve="all" />
-    <type fullname="UnityEngine.iOS.OnDemandResources" preserve="all" />
-    <type fullname="UnityEngine.tvOS.Remote" preserve="all" />
-    <type fullname="UnityEngine.Apple.TV.Remote" preserve="all" />
-    <type fullname="UnityEngine.tvOS.DeviceGeneration" preserve="all" />
-    <type fullname="UnityEngine.tvOS.Device" preserve="all" />
-    <type fullname="UnityEngine.ILogger" preserve="all" />
     <type fullname="UnityEngine.ILogHandler" preserve="all" />
+    <type fullname="UnityEngine.ILogger" preserve="all" />
     <type fullname="UnityEngine.Logger" preserve="all" />
     <type fullname="Unity.Collections.NativeLeakDetectionMode" preserve="all" />
     <type fullname="Unity.Collections.NativeLeakDetection" preserve="all" />
@@ -822,7 +766,6 @@
     <type fullname="UnityEngine.Experimental.Rendering.LODParameters" preserve="all" />
     <type fullname="UnityEngine.Experimental.Rendering.RasterState" preserve="all" />
     <type fullname="UnityEngine.Experimental.Rendering.ReflectionProbeSortOptions" preserve="all" />
-    <type fullname="UnityEngine.Experimental.Rendering.RendererConfiguration" preserve="all" />
     <type fullname="UnityEngine.Experimental.Rendering.RenderPipeline" preserve="all" />
     <type fullname="UnityEngine.Experimental.Rendering.RenderPipelineAsset" preserve="all" />
     <type fullname="UnityEngine.Experimental.Rendering.RenderPipelineManager" preserve="all" />
@@ -831,6 +774,7 @@
     <type fullname="UnityEngine.Experimental.Rendering.RenderStateMapping" preserve="all" />
     <type fullname="UnityEngine.Experimental.Rendering.RenderStateMask" preserve="all" />
     <type fullname="UnityEngine.Experimental.Rendering.RenderTargetBlendState" preserve="all" />
+    <type fullname="UnityEngine.Experimental.Rendering.RendererConfiguration" preserve="all" />
     <type fullname="UnityEngine.Experimental.Rendering.ShadowSplitData" preserve="all" />
     <type fullname="UnityEngine.Experimental.Rendering.ShadowSplitData+&lt;_cullingPlanes&gt;__FixedBuffer6" preserve="all" />
     <type fullname="UnityEngine.Experimental.Rendering.SortFlags" preserve="all" />
@@ -880,6 +824,21 @@
     <type fullname="UnityEngineInternal.TypeInferenceRuleAttribute" preserve="all" />
     <type fullname="UnityEngineInternal.GenericStack" preserve="all" />
     <type fullname="Unity.Collections.LowLevel.Unsafe.UnsafeUtility" preserve="all" />
+    <type fullname="UnityEngine.WSA.AppCallbackItem" preserve="all" />
+    <type fullname="UnityEngine.WSA.WindowSizeChanged" preserve="all" />
+    <type fullname="UnityEngine.WSA.WindowActivationState" preserve="all" />
+    <type fullname="UnityEngine.WSA.WindowActivated" preserve="all" />
+    <type fullname="UnityEngine.WSA.Application" preserve="all" />
+    <type fullname="UnityEngine.WSA.Cursor" preserve="all" />
+    <type fullname="UnityEngine.WSA.Folder" preserve="all" />
+    <type fullname="UnityEngine.WSA.Launcher" preserve="all" />
+    <type fullname="UnityEngine.WSA.TileTemplate" preserve="all" />
+    <type fullname="UnityEngine.WSA.ToastTemplate" preserve="all" />
+    <type fullname="UnityEngine.WSA.TileForegroundText" preserve="all" />
+    <type fullname="UnityEngine.WSA.SecondaryTileData" preserve="all" />
+    <type fullname="UnityEngine.WSA.Tile" preserve="all" />
+    <type fullname="UnityEngine.WSA.Toast" preserve="all" />
+    <type fullname="UnityEngineInternal.NetFxCoreExtensions" preserve="all" />
     <type fullname="UnityEngine.Windows.LicenseInformation" preserve="all" />
     <type fullname="UnityEngine.Windows.Speech.PhraseRecognitionSystem" preserve="all" />
     <type fullname="UnityEngine.Windows.Speech.PhraseRecognitionSystem+ErrorDelegate" preserve="all" />
@@ -904,21 +863,62 @@
     <type fullname="UnityEngine.Windows.Crypto" preserve="all" />
     <type fullname="UnityEngine.Windows.Directory" preserve="all" />
     <type fullname="UnityEngine.Windows.File" preserve="all" />
-    <type fullname="UnityEngineInternal.NetFxCoreExtensions" preserve="all" />
-    <type fullname="UnityEngine.WSA.AppCallbackItem" preserve="all" />
-    <type fullname="UnityEngine.WSA.WindowSizeChanged" preserve="all" />
-    <type fullname="UnityEngine.WSA.WindowActivationState" preserve="all" />
-    <type fullname="UnityEngine.WSA.WindowActivated" preserve="all" />
-    <type fullname="UnityEngine.WSA.Application" preserve="all" />
-    <type fullname="UnityEngine.WSA.Cursor" preserve="all" />
-    <type fullname="UnityEngine.WSA.Folder" preserve="all" />
-    <type fullname="UnityEngine.WSA.Launcher" preserve="all" />
-    <type fullname="UnityEngine.WSA.TileTemplate" preserve="all" />
-    <type fullname="UnityEngine.WSA.ToastTemplate" preserve="all" />
-    <type fullname="UnityEngine.WSA.TileForegroundText" preserve="all" />
-    <type fullname="UnityEngine.WSA.SecondaryTileData" preserve="all" />
-    <type fullname="UnityEngine.WSA.Tile" preserve="all" />
-    <type fullname="UnityEngine.WSA.Toast" preserve="all" />
+    <type fullname="UnityEngine.iOS.OnDemandResourcesRequest" preserve="all" />
+    <type fullname="UnityEngine.iOS.OnDemandResources" preserve="all" />
+    <type fullname="UnityEngine.iPhoneScreenOrientation" preserve="all" />
+    <type fullname="UnityEngine.iPhoneNetworkReachability" preserve="all" />
+    <type fullname="UnityEngine.iPhoneGeneration" preserve="all" />
+    <type fullname="UnityEngine.iPhoneSettings" preserve="all" />
+    <type fullname="UnityEngine.iPhoneTouchPhase" preserve="all" />
+    <type fullname="UnityEngine.iPhoneTouch" preserve="all" />
+    <type fullname="UnityEngine.iPhoneMovieControlMode" preserve="all" />
+    <type fullname="UnityEngine.iPhoneMovieScalingMode" preserve="all" />
+    <type fullname="UnityEngine.iPhoneUtils" preserve="all" />
+    <type fullname="UnityEngine.iPhoneKeyboardType" preserve="all" />
+    <type fullname="UnityEngine.iPhoneKeyboard" preserve="all" />
+    <type fullname="UnityEngine.iPhoneAccelerationEvent" preserve="all" />
+    <type fullname="UnityEngine.iPhoneOrientation" preserve="all" />
+    <type fullname="UnityEngine.iPhoneInput" preserve="all" />
+    <type fullname="UnityEngine.iPhone" preserve="all" />
+    <type fullname="UnityEngine.iOSActivityIndicatorStyle" preserve="all" />
+    <type fullname="UnityEngine.CalendarIdentifier" preserve="all" />
+    <type fullname="UnityEngine.CalendarUnit" preserve="all" />
+    <type fullname="UnityEngine.LocalNotification" preserve="all" />
+    <type fullname="UnityEngine.RemoteNotification" preserve="all" />
+    <type fullname="UnityEngine.RemoteNotificationType" preserve="all" />
+    <type fullname="UnityEngine.NotificationServices" preserve="all" />
+    <type fullname="UnityEngine.ADBannerView" preserve="all" />
+    <type fullname="UnityEngine.ADBannerView+Layout" preserve="all" />
+    <type fullname="UnityEngine.ADBannerView+Type" preserve="all" />
+    <type fullname="UnityEngine.ADBannerView+BannerWasClickedDelegate" preserve="all" />
+    <type fullname="UnityEngine.ADBannerView+BannerWasLoadedDelegate" preserve="all" />
+    <type fullname="UnityEngine.ADInterstitialAd" preserve="all" />
+    <type fullname="UnityEngine.ADInterstitialAd+InterstitialWasLoadedDelegate" preserve="all" />
+    <type fullname="UnityEngine.iOS.ADBannerView" preserve="all" />
+    <type fullname="UnityEngine.iOS.ADBannerView+Layout" preserve="all" />
+    <type fullname="UnityEngine.iOS.ADBannerView+Type" preserve="all" />
+    <type fullname="UnityEngine.iOS.ADBannerView+BannerWasClickedDelegate" preserve="all" />
+    <type fullname="UnityEngine.iOS.ADBannerView+BannerWasLoadedDelegate" preserve="all" />
+    <type fullname="UnityEngine.iOS.ADBannerView+BannerFailedToLoadDelegate" preserve="all" />
+    <type fullname="UnityEngine.iOS.ADInterstitialAd" preserve="all" />
+    <type fullname="UnityEngine.iOS.ADInterstitialAd+InterstitialWasLoadedDelegate" preserve="all" />
+    <type fullname="UnityEngine.iOS.ADInterstitialAd+InterstitialWasViewedDelegate" preserve="all" />
+    <type fullname="UnityEngine.iOS.DeviceGeneration" preserve="all" />
+    <type fullname="UnityEngine.iOS.ActivityIndicatorStyle" preserve="all" />
+    <type fullname="UnityEngine.iOS.Device" preserve="all" />
+    <type fullname="UnityEngine.iOS.CalendarIdentifier" preserve="all" />
+    <type fullname="UnityEngine.iOS.CalendarUnit" preserve="all" />
+    <type fullname="UnityEngine.iOS.NotificationType" preserve="all" />
+    <type fullname="UnityEngine.iOS.NotificationHelper" preserve="all" />
+    <type fullname="UnityEngine.iOS.LocalNotification" preserve="all" />
+    <type fullname="UnityEngine.iOS.RemoteNotification" preserve="all" />
+    <type fullname="UnityEngine.iOS.NotificationServices" preserve="all" />
+    <type fullname="UnityEngine.Apple.ReplayKit.ReplayKit" preserve="all" />
+    <type fullname="UnityEngine.Apple.ReplayKit.ReplayKit+BroadcastStatusCallback" preserve="all" />
+    <type fullname="UnityEngine.tvOS.Remote" preserve="all" />
+    <type fullname="UnityEngine.Apple.TV.Remote" preserve="all" />
+    <type fullname="UnityEngine.tvOS.DeviceGeneration" preserve="all" />
+    <type fullname="UnityEngine.tvOS.Device" preserve="all" />
     <type fullname="Unity.Jobs.LowLevel.Unsafe.BatchQueryJob`2" preserve="all" />
     <type fullname="Unity.Jobs.LowLevel.Unsafe.BatchQueryJobStruct`1" preserve="all" />
     <type fullname="Unity.Jobs.IJob" preserve="all" />
@@ -1011,8 +1011,8 @@
     <type fullname="UnityEngine.EventSystems.ExecuteEvents" preserve="all" />
     <type fullname="UnityEngine.EventSystems.ExecuteEvents+EventFunction`1" preserve="all" />
     <type fullname="UnityEngine.EventSystems.MoveDirection" preserve="all" />
-    <type fullname="UnityEngine.EventSystems.RaycasterManager" preserve="all" />
     <type fullname="UnityEngine.EventSystems.RaycastResult" preserve="all" />
+    <type fullname="UnityEngine.EventSystems.RaycasterManager" preserve="all" />
     <type fullname="UnityEngine.EventSystems.UIBehaviour" preserve="all" />
     <type fullname="UnityEngine.EventSystems.AxisEventData" preserve="all" />
     <type fullname="UnityEngine.EventSystems.AbstractEventData" preserve="all" />
@@ -1061,6 +1061,8 @@
     <type fullname="UnityEngine.UI.GraphicRebuildTracker" preserve="all" />
     <type fullname="UnityEngine.UI.GraphicRegistry" preserve="all" />
     <type fullname="UnityEngine.UI.IGraphicEnabledDisabled" preserve="all" />
+    <type fullname="UnityEngine.UI.IMask" preserve="all" />
+    <type fullname="UnityEngine.UI.IMaskable" preserve="all" />
     <type fullname="UnityEngine.UI.Image" preserve="all" />
     <type fullname="UnityEngine.UI.Image+Type" preserve="all" />
     <type fullname="UnityEngine.UI.Image+FillMethod" preserve="all" />
@@ -1069,8 +1071,6 @@
     <type fullname="UnityEngine.UI.Image+Origin90" preserve="all" />
     <type fullname="UnityEngine.UI.Image+Origin180" preserve="all" />
     <type fullname="UnityEngine.UI.Image+Origin360" preserve="all" />
-    <type fullname="UnityEngine.UI.IMask" preserve="all" />
-    <type fullname="UnityEngine.UI.IMaskable" preserve="all" />
     <type fullname="UnityEngine.UI.InputField" preserve="all" />
     <type fullname="UnityEngine.UI.InputField+ContentType" preserve="all" />
     <type fullname="UnityEngine.UI.InputField+InputType" preserve="all" />
@@ -1081,22 +1081,22 @@
     <type fullname="UnityEngine.UI.InputField+OnChangeEvent" preserve="all" />
     <type fullname="UnityEngine.UI.InputField+EditState" preserve="all" />
     <type fullname="UnityEngine.UI.Mask" preserve="all" />
+    <type fullname="UnityEngine.UI.MaskUtilities" preserve="all" />
     <type fullname="UnityEngine.UI.MaskableGraphic" preserve="all" />
     <type fullname="UnityEngine.UI.MaskableGraphic+CullStateChangedEvent" preserve="all" />
-    <type fullname="UnityEngine.UI.MaskUtilities" preserve="all" />
     <type fullname="UnityEngine.UI.Misc" preserve="all" />
     <type fullname="UnityEngine.UI.Navigation" preserve="all" />
     <type fullname="UnityEngine.UI.Navigation+Mode" preserve="all" />
     <type fullname="UnityEngine.UI.RawImage" preserve="all" />
     <type fullname="UnityEngine.UI.RectMask2D" preserve="all" />
-    <type fullname="UnityEngine.UI.Scrollbar" preserve="all" />
-    <type fullname="UnityEngine.UI.Scrollbar+Direction" preserve="all" />
-    <type fullname="UnityEngine.UI.Scrollbar+ScrollEvent" preserve="all" />
-    <type fullname="UnityEngine.UI.Scrollbar+Axis" preserve="all" />
     <type fullname="UnityEngine.UI.ScrollRect" preserve="all" />
     <type fullname="UnityEngine.UI.ScrollRect+MovementType" preserve="all" />
     <type fullname="UnityEngine.UI.ScrollRect+ScrollbarVisibility" preserve="all" />
     <type fullname="UnityEngine.UI.ScrollRect+ScrollRectEvent" preserve="all" />
+    <type fullname="UnityEngine.UI.Scrollbar" preserve="all" />
+    <type fullname="UnityEngine.UI.Scrollbar+Direction" preserve="all" />
+    <type fullname="UnityEngine.UI.Scrollbar+ScrollEvent" preserve="all" />
+    <type fullname="UnityEngine.UI.Scrollbar+Axis" preserve="all" />
     <type fullname="UnityEngine.UI.Selectable" preserve="all" />
     <type fullname="UnityEngine.UI.Selectable+Transition" preserve="all" />
     <type fullname="UnityEngine.UI.Selectable+SelectionState" preserve="all" />
@@ -2043,14 +2043,11 @@
     <type fullname="ILRuntime.Runtime.Adaptors.AttributeAdaptor" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.ADataListener_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.CLRBindings" preserve="all" />
-    <type fullname="ILRuntime.Runtime.Generated.DataListenerServer_Binding" preserve="all" />
-    <type fullname="ILRuntime.Runtime.Generated.DG_Tweening_ShortcutExtensions_Binding" preserve="all" />
-    <type fullname="ILRuntime.Runtime.Generated.DG_Tweening_TweenSettingsExtensions_Binding" preserve="all" />
-    <type fullname="ILRuntime.Runtime.Generated.GFFramework_GFLauncher_Binding" preserve="all" />
+    <type fullname="ILRuntime.Runtime.Generated.GF_Debug_Debugger_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.GFFramework_GameStart_IGameStart_Binding" preserve="all" />
+    <type fullname="ILRuntime.Runtime.Generated.GFFramework_GFLauncher_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.GFFramework_ILRuntimeHelper_Binding" preserve="all" />
-    <type fullname="ILRuntime.Runtime.Generated.GFFramework_ResourceMgr_BResources_Binding" preserve="all" />
-    <type fullname="ILRuntime.Runtime.Generated.GFFramework_VersionContorller_Binding" preserve="all" />
+    <type fullname="ILRuntime.Runtime.Generated.GFFramework_ResourceMgr_CResources_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.IEnumeratorTool_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.ILRuntime_CLR_TypeSystem_IType_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.ILRuntime_Runtime_Enviorment_AppDomain_Binding" preserve="all" />
@@ -2064,6 +2061,7 @@
     <type fullname="ILRuntime.Runtime.Generated.System_Action_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Activator_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_AppDomain_Binding" preserve="all" />
+    <type fullname="ILRuntime.Runtime.Generated.System_Array_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_Binding_ValueCollection_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_Binding_ValueCollection_Binding_Enumerator_Binding" preserve="all" />
@@ -2079,11 +2077,8 @@
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_Dictionary_2_String_Object_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_Dictionary_2_String_Object_Binding_Enumerator_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_Dictionary_2_Transform_Dictionary_2_String_ILTypeInstance_Binding" preserve="all" />
-    <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_IEnumerable_1_KeyValuePair_2_String_Object_Binding" preserve="all" />
-    <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_IEnumerator_1_KeyValuePair_2_String_Object_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_KeyValuePair_2_String_ILTypeInstance_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_KeyValuePair_2_String_Object_Binding" preserve="all" />
-    <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_KeyValuePair_2_String_Object_Binding_t" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_List_1_Assembly_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_List_1_ILTypeInstance_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_List_1_ILTypeInstance_Binding_Enumerator_Binding" preserve="all" />
@@ -2100,7 +2095,6 @@
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_List_1_Type_Binding_Enumerator_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_List_1_UITool_Attribute_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_ICollection_Binding" preserve="all" />
-    <type fullname="ILRuntime.Runtime.Generated.System_Collections_IEnumerator_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_IList_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Diagnostics_Stopwatch_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Exception_Binding" preserve="all" />
@@ -2119,24 +2113,31 @@
     <type fullname="ILRuntime.Runtime.Generated.System_Runtime_CompilerServices_AsyncVoidMethodBuilder_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_String_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Type_Binding" preserve="all" />
+    <type fullname="ILRuntime.Runtime.Generated.UberDebug_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UITool_Attribute_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Application_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Behaviour_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Component_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Debug_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Events_UnityEvent_1_Single_Binding" preserve="all" />
+    <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Events_UnityEvent_1_String_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Events_UnityEvent_Binding" preserve="all" />
+    <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Events_UnityEventBase_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_GameObject_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Object_Binding" preserve="all" />
+    <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Quaternion_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Random_Binding" preserve="all" />
+    <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Time_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Transform_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_UI_Button_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_UI_Image_Binding" preserve="all" />
+    <type fullname="ILRuntime.Runtime.Generated.UnityEngine_UI_InputField_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_UI_Scrollbar_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_UI_Slider_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_UI_Text_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_UI_Toggle_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Vector3_Binding" preserve="all" />
+    <type fullname="ILRuntime.Runtime.Generated.UnityEngine_WaitForEndOfFrame_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_WaitForSecondsRealtime_Binding" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.CLRManualBindings" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Transform_ManualBinding" preserve="all" />
@@ -2154,12 +2155,13 @@
     <type fullname="ILRuntimeDelegateHelper+&lt;&gt;c__DisplayClass0_1" preserve="all" />
     <type fullname="ILRuntimeDelegateHelper+&lt;&gt;c__DisplayClass0_2" preserve="all" />
     <type fullname="ILRuntimeDelegateHelper+&lt;&gt;c__DisplayClass0_3" preserve="all" />
+    <type fullname="ILRuntimeDelegateHelper+&lt;&gt;c__DisplayClass0_4" preserve="all" />
     <type fullname="ILRuntimeDelegateHelper+&lt;&gt;c" preserve="all" />
     <type fullname="PageList+Direction" preserve="all" />
     <type fullname="PageListDemo+TestData" preserve="all" />
     <type fullname="PageListDemo+&lt;&gt;c__DisplayClass4_0" preserve="all" />
     <type fullname="CUIMenuWindow+&lt;&gt;c" preserve="all" />
-    <type fullname="CUICustomWindow+&lt;createInputContent&gt;d__16" preserve="all" />
+    <type fullname="CUICustomWindow+&lt;createInputContent&gt;d__18" preserve="all" />
     <type fullname="CUIGameWindow+&lt;&gt;c" preserve="all" />
     <type fullname="CUIGameWindow+&lt;startCountDown&gt;d__20" preserve="all" />
     <type fullname="HotfixCheck+testclass" preserve="all" />
@@ -2252,10 +2254,10 @@
     <type fullname="UberLogger.Logger+&lt;&gt;c__DisplayClass23_0" preserve="all" />
     <type fullname="UberLogger.Logger+&lt;&gt;c" preserve="all" />
     <type fullname="UberLogger.Logger+&lt;&gt;c__DisplayClass24_0" preserve="all" />
-    <type fullname="GFFramework.GFLauncher+&lt;Start&gt;d__26" preserve="all" />
-    <type fullname="GFFramework.GFLauncher+&lt;CopyStreamAsset2PersistantPath&gt;d__27" preserve="all" />
+    <type fullname="GFFramework.GFLauncher+&lt;Start&gt;d__27" preserve="all" />
+    <type fullname="GFFramework.GFLauncher+&lt;CopyStreamAsset2PersistantPath&gt;d__28" preserve="all" />
     <type fullname="GFFramework.GFLauncher+&lt;&gt;c" preserve="all" />
-    <type fullname="GFFramework.GFLauncher+&lt;CheckUpdateResources&gt;d__30" preserve="all" />
+    <type fullname="GFFramework.GFLauncher+&lt;CheckUpdateResources&gt;d__31" preserve="all" />
     <type fullname="GFFramework.VersionContorller+&lt;Start&gt;d__0" preserve="all" />
     <type fullname="GFFramework.VersionContorller+&lt;IEStart&gt;d__1" preserve="all" />
     <type fullname="GFFramework.VersionContorller+&lt;&gt;c__DisplayClass2_0" preserve="all" />
@@ -2318,7 +2320,6 @@
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_Dictionary_2_String_Object_Binding_Enumerator_Binding+&lt;&gt;c" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_KeyValuePair_2_String_ILTypeInstance_Binding+&lt;&gt;c" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_KeyValuePair_2_String_Object_Binding+&lt;&gt;c" preserve="all" />
-    <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_KeyValuePair_2_String_Object_Binding_t+&lt;&gt;c" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_List_1_ILTypeInstance_Binding_Enumerator_Binding+&lt;&gt;c" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_List_1_Int32_Binding_Enumerator_Binding+&lt;&gt;c" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Collections_Generic_List_1_IType_Binding_Enumerator_Binding+&lt;&gt;c" preserve="all" />
@@ -2328,6 +2329,8 @@
     <type fullname="ILRuntime.Runtime.Generated.System_Int32_Binding+&lt;&gt;c" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Object_Binding+&lt;&gt;c" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.System_Runtime_CompilerServices_AsyncVoidMethodBuilder_Binding+&lt;&gt;c" preserve="all" />
+    <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Quaternion_Binding+&lt;&gt;c" preserve="all" />
+    <type fullname="ILRuntime.Runtime.Generated.UnityEngine_UI_Text_Binding+&lt;&gt;c" preserve="all" />
     <type fullname="ILRuntime.Runtime.Generated.UnityEngine_Vector3_Binding+&lt;&gt;c" preserve="all" />
     <type fullname="&lt;PrivateImplementationDetails&gt;+__StaticArrayInitTypeSize=3" preserve="all" />
     <type fullname="&lt;PrivateImplementationDetails&gt;+__StaticArrayInitTypeSize=5" preserve="all" />
@@ -5127,5 +5130,42 @@
     <type fullname="System.Runtime.DesignerServices.WindowsRuntimeDesignerContext" preserve="all" />
     <type fullname="System.Globalization.GlobalizationExtensions" preserve="all" />
     <type fullname="Unity.ThrowStub" preserve="all" />
+  </assembly>
+  <assembly fullname="GF">
+    <type fullname="GF.Singleton`1" preserve="all" />
+    <type fullname="GF.SingletonMonoBehaviour`1" preserve="all" />
+    <type fullname="GF.UnitySingleton`1" preserve="all" />
+    <type fullname="GF.DataSave" preserve="all" />
+    <type fullname="GF.FileHelper" preserve="all" />
+    <type fullname="GF.ObjectPool`1" preserve="all" />
+    <type fullname="GF.Utility.CommonUtility" preserve="all" />
+    <type fullname="GF.Utility.EventArgs`1" preserve="all" />
+    <type fullname="GF.Utility.Extensions" preserve="all" />
+    <type fullname="GF.ResourcesLoad.CResourceManager" preserve="all" />
+    <type fullname="GF.ResourcesLoad.ResLoadLocation" preserve="all" />
+    <type fullname="GF.MonoBehavior.ActionSequenceSystem.ActionSequenceHandle" preserve="all" />
+    <type fullname="GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem" preserve="all" />
+    <type fullname="GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemEx" preserve="all" />
+    <type fullname="GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystemUnscaledEx" preserve="all" />
+    <type fullname="GF.MonoBehavior.ActionSequenceSystem.ActionSequence" preserve="all" />
+    <type fullname="GF.MonoBehavior.ActionSequenceSystem.ActionNode" preserve="all" />
+    <type fullname="GF.MonoBehavior.ActionSequenceSystem.ActionNodeAction" preserve="all" />
+    <type fullname="GF.MonoBehavior.ActionSequenceSystem.ActionNodeInterval" preserve="all" />
+    <type fullname="GF.MonoBehavior.ActionSequenceSystem.ActionNodeSetActive" preserve="all" />
+    <type fullname="GF.MonoBehavior.ActionSequenceSystem.ActionNodeWaitFor" preserve="all" />
+    <type fullname="GF.Debug.Debugger" preserve="all" />
+    <type fullname="GF.Collections.ConcurrentQueue`1" preserve="all" />
+    <type fullname="GF.Collections.ObservableDictionary`2" preserve="all" />
+    <type fullname="GF.Collections.Tuple" preserve="all" />
+    <type fullname="GF.Collections.Tuple`1" preserve="all" />
+    <type fullname="GF.Collections.Tuple`2" preserve="all" />
+    <type fullname="GF.Collections.Tuple`3" preserve="all" />
+    <type fullname="GF.Collections.Tuple`4" preserve="all" />
+    <type fullname="GF.Collections.Tuple`5" preserve="all" />
+    <type fullname="GF.Collections.Tuple`6" preserve="all" />
+    <type fullname="GF.Collections.Tuple`7" preserve="all" />
+    <type fullname="GF.ObjectPool`1+GetT" preserve="all" />
+    <type fullname="GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem+SequenceUpdater" preserve="all" />
+    <type fullname="GF.MonoBehavior.ActionSequenceSystem.ActionSequenceSystem+SequenceUpdater+&lt;&gt;c" preserve="all" />
   </assembly>
 </linker>

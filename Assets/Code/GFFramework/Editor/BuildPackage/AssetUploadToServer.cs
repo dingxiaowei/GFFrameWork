@@ -15,25 +15,30 @@ namespace GFFramework.Editor.BuildPackage
    static  public class AssetUploadToServer
     {
 
-        static public void Start(string path, string uploadHttpApi)
+        static public void Start(string path, string uploadHttpApi,string version)
         {
             var ios =IPath.Combine(path, "iOS");
             var android =IPath.Combine(path, "Android");
             var windows =IPath.Combine(path, "Windows");
+            double _version = 1.0f;
+            if (!string.IsNullOrEmpty(version))
+            {
+                double.TryParse(version, out _version);
+            }
 
             if (Directory.Exists(ios))
             {
-                File2Hash("iOS", 1.0d, ios);
+                File2Hash("iOS", _version, ios);
             }
             
             if (Directory.Exists(android))
             {
-                File2Hash("Android", 1.0d, android);
+                File2Hash("Android", _version, android);
             }
             
             if (Directory.Exists(windows))
             {
-                File2Hash("Windows", 1.0d, windows);
+                File2Hash("Windows", _version, windows);
             }
             
             EditorUtility.ClearProgressBar();

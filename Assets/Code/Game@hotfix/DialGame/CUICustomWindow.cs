@@ -20,7 +20,7 @@ public class CUICustomWindow : WindowBase
     [TransformPath("Center/CenterNode/Text")] private Text txt_Num;
 
     Dial tempDialData;
-    List<CUIInput> m_InputContents = new List<CUIInput>();
+    List<CUIInput> tempInputContents = new List<CUIInput>();
     public CUICustomWindow(string path) : base(path)
     {
 
@@ -31,6 +31,7 @@ public class CUICustomWindow : WindowBase
         base.Init();
         txt_Title.text = "";
         tempDialData = null;
+        this.ifd_InputName.onEndEdit.RemoveAllListeners();
         this.ifd_InputName.onEndEdit.AddListener((value) =>
         {
             if (tempDialData == null)
@@ -39,31 +40,47 @@ public class CUICustomWindow : WindowBase
             }
             tempDialData.Name = value;
         });
-
+        this.btn_Back.onClick.RemoveAllListeners();
         this.btn_Back.onClick.AddListener(() =>
         {
             Debugger.Log("点击了Back按钮");
             goBack();
         });
-
+        this.btn_Yes.onClick.RemoveAllListeners();
         this.btn_Yes.onClick.AddListener(() =>
         {
             Debugger.Log("点击了Yes按钮");
             save();
             goBack();
         });
-
+        this.btn_Del.onClick.RemoveAllListeners();
         this.btn_Del.onClick.AddListener(() =>
         {
             Debugger.Log("点击了Del按钮");
             modifyInputContent(false);
         });
-
+        this.btn_Add.onClick.RemoveAllListeners();
         this.btn_Add.onClick.AddListener(() =>
         {
             Debugger.Log("点击了Add按钮");
             modifyInputContent(true);
         });
+    }
+
+    public override void Open(WindowData data = null)
+    {
+        base.Open(data);
+    }
+
+    private void reset()
+    {
+        ifd_InputName.text = "";
+        tempInputContents.Clear();
+        //Init();
+        //tempDialData.Count = 0;
+        //tempDialData.Name = "";
+        //tempDialData.Value.Clear();
+        //showInputContents();
     }
 
     private void save()
@@ -77,6 +94,7 @@ public class CUICustomWindow : WindowBase
 
     private void goBack()
     {
+        reset();
         this.Close();
         ScreenViewManager.Inst.MainLayer.BeginNavTo("main");
     }
@@ -108,12 +126,12 @@ public class CUICustomWindow : WindowBase
 
     private void showInputContents()
     {
-        if (m_InputContents.Count == tempDialData.Count)
+        if (tempInputContents.Count == tempDialData.Count)
             return;
-        while (m_InputContents.Count > tempDialData.Count)
+        while (tempInputContents.Count > tempDialData.Count)
         {
-            GameObject.DestroyImmediate(m_InputContents[m_InputContents.Count - 1].Transform.gameObject);
-            m_InputContents.RemoveAt(m_InputContents.Count - 1);
+            GameObject.DestroyImmediate(tempInputContents[tempInputContents.Count - 1].Transform.gameObject);
+            tempInputContents.RemoveAt(tempInputContents.Count - 1);
         }
         txt_Num.text = tempDialData.Count.ToString();
         IEnumeratorTool.StartCoroutine(createInputContent());
@@ -133,9 +151,9 @@ public class CUICustomWindow : WindowBase
     private void createInputContent(int index)
     {
         CUIInput inputContentWidget = null;
-        if (m_InputContents.Count > index)
+        if (tempInputContents.Count > index)
         {
-            inputContentWidget = m_InputContents[index];
+            inputContentWidget = tempInputContents[index];
         }
         else
         {
@@ -145,12 +163,12 @@ public class CUICustomWindow : WindowBase
                 Debugger.LogError("加载InputContent失败");
                 return;
             }
-            var obj = GameObject.Instantiate(o);
-            obj.transform.parent = tf_Content.transform;
-            obj.transform.localScale = Vector3.one;
+            var obj = GameObject.Instantiate(o, Vector3.zero,Quaternion.identity, tf_Content.transform);
             inputContentWidget = new CUIInput(obj.transform);
             inputContentWidget.Init();
-            m_InputContents.Add(inputContentWidget);
+            obj.transform.localScale = Vector3.one;
+            obj.transform.localPosition = Vector3.zero;
+            tempInputContents.Add(inputContentWidget);
         }
     }
 }

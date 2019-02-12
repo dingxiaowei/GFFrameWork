@@ -1,15 +1,10 @@
-﻿using System;
-using System.Reflection;
-using GFFramework;
+﻿using GF.Debug;
 using GFFramework.GameStart;
-using SQLite4Unity3d;
-using UnityEngine;
 using GFFramework.ResourceMgr;
-using UnityEngine.Serialization;
-using System.Collections;
-using GFFramework.Helper;
-using System.IO;
-using UnityEngine.UI;
+using SQLite4Unity3d;
+using System;
+using System.Reflection;
+using UnityEngine;
 
 namespace GFFramework
 {
@@ -25,211 +20,19 @@ namespace GFFramework
         public AssetLoadPath CodeRoot = AssetLoadPath.Editor;
         public AssetLoadPath SQLRoot = AssetLoadPath.Editor;
         public AssetLoadPath ArtRoot = AssetLoadPath.Editor;
-        public string FileServerUrl = "192.168.1.92";
-        public string Port = "8080";
-        public string ServerRootName = "ftpserver";
+        public bool EnableLog = true;
         static public Action OnStart { get; set; }
         static public Action OnUpdate { get; set; }
         static public Action OnLateUpdate { get; set; }
         static public Action OnFixUpdate { get; set; }
 
-        public Slider slider;
-        public Text loadTips;
-        public GameObject panel;
 
         private void Awake()
         {
+            Debugger.EnableLog = EnableLog;
             this.gameObject.AddComponent<IEnumeratorTool>();
+            LaunchLocal();
         }
-
-        public IEnumerator Start()
-        {
-            string platform = Utils.GetPlatformPath(Application.platform);
-            string localConfigPath = Application.persistentDataPath + "/" + platform + "_Server/" + platform + "_VersionConfig.json";
-            if (File.Exists(localConfigPath))
-            {
-                UberDebug.Log("Resources already copy to persistantDataPath,return!");
-                yield return null;
-            }
-            else
-            {
-                UberDebug.Log("First Start,Copy Resources!");
-                StartCoroutine(CopyStreamAsset2PersistantPath(platform + "_Server/" + platform + "_VersionConfig.json"));
-
-                yield return new WaitForSeconds(0.5f);
-                AssetConfig localconf = null;
-
-                if (File.Exists(localConfigPath))
-                {
-                    localconf = LitJson.JsonMapper.ToObject<AssetConfig>(File.ReadAllText(localConfigPath));
-                    UberDebug.Log("version:" + localconf.Version);
-                    foreach (var item in localconf.Assets)
-                    {
-                        if (-1 == item.LocalPath.IndexOf('.'))//非文件不处理
-                        {
-                            continue;
-                        }
-                        StartCoroutine(CopyStreamAsset2PersistantPath(platform + "/" + item.LocalPath));
-                    }
-                }
-                else
-                {
-                    UberDebug.Log("not exist path:" + localConfigPath);
-                }
-
-            }
-            yield return null;
-
-            if (CodeRoot == AssetLoadPath.Persistent)
-            {
-                UberDebug.Log("Check for Update!", "red");
-                //检查更新资源更新
-                StartCoroutine(CheckUpdateResources(() =>
-                {
-                    //资源更新完毕,准备进入游戏
-                    UberDebug.Log("Enter Game!", "red");
-                    LaunchLocal();
-                }));
-            }
-            else
-            {
-                //资源更新完毕,准备进入游戏
-                UberDebug.Log("Enter Game!", "red");
-                LaunchLocal();
-            }
-        }
-
-        /// <summary>
-        /// 拷贝包体文件
-        /// </summary>
-        /// <param name="absulateFilePath">文件相对路径</param>
-        /// <returns></returns>
-        public IEnumerator CopyStreamAsset2PersistantPath(string absulateFilePath)
-        {
-            string srcFilePath = "";
-#if UNITY_EDITOR
-            srcFilePath = "file:///" + Application.streamingAssetsPath + "/" + absulateFilePath;
-#elif UNITY_ANDROID
-            srcFilePath = "jar:file://" + Application.dataPath + "!/assets/" + absulateFilePath;
-#elif UNITY_IPHONE
-            srcFilePath = "file://" + Application.dataPath + "/Raw/" + absulateFilePath;
-#endif
-            string targetPath = Application.persistentDataPath + "/" + absulateFilePath;
-
-            string filename = absulateFilePath.Substring(absulateFilePath.LastIndexOf('/') + 1);
-            UberDebug.Log("Copy file to persistantPath:" + srcFilePath, "red");
-            WWW www = new WWW(srcFilePath);
-            yield return www;
-            string directory = targetPath.Replace("/" + filename, "");
-
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
-            }
-
-
-            if (!string.IsNullOrEmpty(www.error))
-            {
-                UberDebug.LogError(www.error + " " + srcFilePath);
-            }
-            else
-            {
-                if (File.Exists(targetPath))
-                {
-                    File.Delete(targetPath);
-                }
-                FileStream fs = new FileStream(targetPath, FileMode.Create, FileAccess.Write);
-                fs.Write(www.bytes, 0, www.bytes.Length);
-                fs.Flush();
-                fs.Close();
-                if (File.Exists(targetPath))
-                {
-                    UberDebug.Log(string.Format("Copy to persistantPath OK,{0}", targetPath));
-                }
-                else
-                {
-                    UberDebug.Log(string.Format("Copy to persistantPath Failed,{0}", filename));
-                }
-            }
-            www.Dispose();
-        }
-
-        int downLoadIndex = 0;
-        int taskCount = 0;
-        /// <summary>
-        /// 检查需要更新的资源
-        /// </summary>
-        private IEnumerator CheckUpdateResources(Action CallBack)
-        {
-            var path = Application.persistentDataPath;
-            string server = string.Format("http://{0}:{1}", FileServerUrl, Port);
-            if (!string.IsNullOrEmpty(ServerRootName))
-            {
-                server = string.Format("{0}/{1}", server, ServerRootName);
-            }
-            //var t = VersionContorller.Start(server, path,
-            //    (i, j) =>
-            //    {
-            //        downLoadIndex = i;
-            //        taskCount = j;
-            //        if (i == j && j == 0)
-            //        {
-            //            slider.value = 1f;
-            //            loadTips.text = string.Format("资源加载完成，游戏初始化中");
-            //            UberDebug.LogError("<color=yellow>no file to download,will enter game...</color>");
-            //        }
-            //        else if (i == j && j != 0)
-            //        {
-            //            slider.value = 1f;
-            //            panel.SetActive(false);
-            //            loadTips.text = string.Format("资源加载完成，游戏初始化中");
-            //            UberDebug.Log("<color=yellow>Resource download finished,will enter game...</color>");
-            //        }
-            //        else
-            //        {
-            //            float progress = (i + 1) * 1f / j;
-            //            slider.value = progress;
-            //            loadTips.text = string.Format("资源加载进度：[{0}]", progress.ToString("P"));
-            //            Debug.LogFormat("<color=yellow>资源更新进度：{0}/{1}</color>", i, j);
-            //        }
-            //    },
-            //    (error) =>
-            //    {
-            //        Debug.LogError("错误:" + error);
-            //    }, CallBack);
-            IEnumeratorTool.StartCoroutine(VersionContorller.IEStart(server, path,
-                (i, j) =>
-                {
-                    downLoadIndex = i;
-                    taskCount = j;
-                    if (i == j && j == 0)
-                    {
-                        slider.value = 1f;
-                        loadTips.text = string.Format("资源加载完成，游戏初始化中");
-                        UberDebug.LogError("<color=yellow>no file to download,will enter game...</color>");
-                    }
-                    else if (i == j && j != 0)
-                    {
-                        slider.value = 1f;
-                        panel.SetActive(false);
-                        loadTips.text = string.Format("资源加载完成，游戏初始化中");
-                        UberDebug.Log("<color=yellow>Resource download finished,will enter game...</color>");
-                    }
-                    else
-                    {
-                        float progress = (i + 1) * 1f / j;
-                        slider.value = progress;
-                        loadTips.text = string.Format("资源加载进度：[{0}]", progress.ToString("P"));
-                        Debug.LogFormat("<color=yellow>资源更新进度：{0}/{1}</color>", i, j);
-                    }
-                },
-                (error) =>
-                {
-                    Debug.LogError("错误:" + error);
-                }, CallBack));
-            yield return null;
-        }
-
 
         #region 启动非热更逻辑
 
@@ -239,8 +42,6 @@ namespace GFFramework
         public void LaunchLocal()
         {
             var types = Assembly.GetExecutingAssembly().GetTypes();
-
-
             var istartType = typeof(IGameStart);
             foreach (var t in types)
             {
@@ -250,13 +51,9 @@ namespace GFFramework
                     if (attr != null)
                     {
                         var gs = Activator.CreateInstance(t) as IGameStart;
-
-                        //注册
                         gs.Start();
-
-                        //
-                        GFLauncher.OnUpdate = gs.Update;
-                        GFLauncher.OnLateUpdate = gs.LateUpdate;
+                        GFLauncher.OnUpdate += gs.Update;
+                        GFLauncher.OnLateUpdate += gs.LateUpdate;
                     }
                 }
             }
